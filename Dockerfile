@@ -2,9 +2,6 @@
 # as the base image (https://hub.docker.com/_/ruby)
 FROM ruby:2.7.3
 
-#installing postgres
-RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
-
 # Ussing a /code directory
 WORKDIR /code
 
