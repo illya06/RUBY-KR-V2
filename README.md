@@ -1,24 +1,8 @@
-# README
+# THINGS I'VE DONE
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+List of `features` :
 
-Things you may want to cover:
+    - Gettinng started (5)
 
-* Ruby version
+    - Pagination (2)
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
