@@ -33,16 +33,12 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
+    return unless user_authorized?
   end
 
   def update
     @article = Article.find(params[:id])
-
-    unless @article.author_id == current_user.id
-        redirect_to @article,
-                    alert: "Action is not allowed"
-        return
-    end
+    return unless user_authorized?
 
     if @article.update(article_params)
       redirect_to @article
@@ -53,12 +49,7 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
-
-    unless @article.author_id == current_user.id
-        redirect_to @article,
-                    alert: "Action is not allowed"
-        return
-    end
+    return unless user_authorized?
 
     @article.destroy
 
@@ -69,4 +60,12 @@ class ArticlesController < ApplicationController
     def article_params
       params.require(:article).permit(:title, :body, :status)
     end
+
+  def user_authorized?
+    return true if @article.author_id == current_user.id
+
+    redirect_to @article,
+                alert: "Action is not allowed"
+    return false
+  end
 end
