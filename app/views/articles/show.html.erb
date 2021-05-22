@@ -1,5 +1,10 @@
 <h1><%= @article.title %></h1>
 
+<p>
+  <strong>Author: </strong>
+  <%= @article.author.email %>
+</p>
+
 <p><%= @article.body %></p>
 
 <%= link_to "Home", root_path %>
