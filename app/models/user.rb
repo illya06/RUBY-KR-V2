@@ -4,5 +4,5 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :validatable
 
-  has_many :articles, inverse_of: :author
+  has_many :articles, foreign_key: :author_id
 end
