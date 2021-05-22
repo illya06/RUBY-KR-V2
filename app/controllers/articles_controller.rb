@@ -1,6 +1,9 @@
 class ArticlesController < ApplicationController
+  ARTICLES_AMMOUNT = 2
+
   def index
-    @articles = Article.all
+    @page = params.fetch(:page, 0).to_i
+    @articles = Article.offset(@page*ARTICLES_AMMOUNT).limit(ARTICLES_AMMOUNT)
   end
 
   def show
