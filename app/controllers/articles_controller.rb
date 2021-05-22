@@ -5,7 +5,7 @@ class ArticlesController < ApplicationController
 
   def index
     @page = params.fetch(:page, 0).to_i
-    @articles = Article.offset(@page*ARTICLES_AMMOUNT).limit(ARTICLES_AMMOUNT)
+    @articles = Article.order(created_at: :desc).includes(:author).offset(@page*ARTICLES_AMMOUNT).limit(ARTICLES_AMMOUNT)
 
     if @page < 0 || @articles.blank?
         redirect_to root_path
