@@ -39,7 +39,7 @@ class ArticlesController < ApplicationController
     @article = Article.find(params[:id])
 
     unless @article.author_id == current_user.id
-        redirect_to root_path,
+        redirect_to @article,
                     alert: "Action is not allowed"
         return
     end
@@ -53,6 +53,13 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
+
+    unless @article.author_id == current_user.id
+        redirect_to @article,
+                    alert: "Action is not allowed"
+        return
+    end
+
     @article.destroy
 
     redirect_to root_path
