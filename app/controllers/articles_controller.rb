@@ -1,6 +1,8 @@
 class ArticlesController < ApplicationController
   ARTICLES_AMMOUNT = 2
 
+  before_action :authenticate_user!, only: %i[new create edit update destroy]
+
   def index
     @page = params.fetch(:page, 0).to_i
     @articles = Article.offset(@page*ARTICLES_AMMOUNT).limit(ARTICLES_AMMOUNT)
