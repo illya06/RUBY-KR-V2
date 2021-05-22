@@ -38,6 +38,12 @@ class ArticlesController < ApplicationController
   def update
     @article = Article.find(params[:id])
 
+    unless @article.author_id == current_user.id
+        redirect_to root_path,
+                    alert: "Action is not allowed"
+        return
+    end
+
     if @article.update(article_params)
       redirect_to @article
     else
