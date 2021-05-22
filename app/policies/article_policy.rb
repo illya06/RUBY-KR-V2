@@ -3,6 +3,11 @@ class ArticlePolicy < ApplicationPolicy
         true
     end
 
+    def create?
+        return false unless user
+        true
+    end
+
     def show?
         record.status == "public" || author?
     end
