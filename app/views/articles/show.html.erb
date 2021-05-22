@@ -10,10 +10,16 @@
 <%= link_to "Home", root_path %>
 
 <ul>
-  <li><%= link_to "Edit", edit_article_path(@article) %></li>
-  <li><%= link_to "Destroy", article_path(@article),
-                  method: :delete,
-                  data: { confirm: "Are you sure?" } %></li>
+  <% if policy(@article).update? %>
+    <li><%= link_to "Edit", edit_article_path(@article) %></li>
+  <% end %>
+
+  <% if policy(@article).destroy? %>
+    <li><%= link_to "Destroy", article_path(@article),
+                    method: :delete,
+                    data: { confirm: "Are you sure?" } %></li>
+  <% end %>
+
 </ul>
 
 <h2>Comments</h2>
