@@ -4,6 +4,8 @@ class ArticlesController < ApplicationController
   before_action :authenticate_user!, only: %i[new create edit update destroy]
 
   def index
+    authorize Article
+
     @page = params.fetch(:page, 0).to_i
     @articles = Article.order(created_at: :desc).includes(:author).offset(@page*ARTICLES_AMMOUNT).limit(ARTICLES_AMMOUNT)
 
@@ -14,13 +16,17 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
+    authorize @article
   end
 
   def new
+    authorize Article
     @article = Article.new
   end
 
   def create
+    authorize Article
+
     @article = Article.new(article_params)
     @article.author =  current_user
 
@@ -33,12 +39,16 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
-    return unless user_authorized?
+    authorize @article
+
+    # return unless user_authorized?
   end
 
   def update
     @article = Article.find(params[:id])
-    return unless user_authorized?
+    authorize @article
+
+    # return unless user_authorized?
 
     if @article.update(article_params)
       redirect_to @article
@@ -49,7 +59,8 @@ class ArticlesController < ApplicationController
 
   def destroy
     @article = Article.find(params[:id])
-    return unless user_authorized?
+    # return unless user_authorized?
+    authorize @article
 
     @article.destroy
 
@@ -61,11 +72,11 @@ class ArticlesController < ApplicationController
       params.require(:article).permit(:title, :body, :status)
     end
 
-  def user_authorized?
-    return true if @article.author_id == current_user.id
+#   def user_authorized?
+#     return true if @article.author_id == current_user.id
 
-    redirect_to @article,
-                alert: "Action is not allowed"
-    return false
-  end
+#     redirect_to @article,
+#                 alert: "Action is not allowed"
+#     return false
+#   end
 end
