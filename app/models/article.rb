@@ -7,4 +7,9 @@ class Article < ApplicationRecord
   validates :body, presence: true, length: { minimum: 1 }
 
   scope :is_public, ->(val = true) { where(status: "public") }
+  scope :search, ->(request) do
+    return if request.blank?
+    where('title LIKE ?', "%#{request.squish}%")
+  end
+
 end
