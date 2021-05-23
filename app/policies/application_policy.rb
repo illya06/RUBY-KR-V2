@@ -47,8 +47,11 @@ class ApplicationPolicy
     end
   end
 
+  def user_logged_in?
+    !!user
+  end
+
   def admin?
-    return false unless user
-    user.admin?
+    user_logged_in? && user.admin?
   end
 end
