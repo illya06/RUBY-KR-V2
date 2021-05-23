@@ -46,4 +46,9 @@ class ApplicationPolicy
       scope.all
     end
   end
+
+  def admin?
+    return false unless user
+    user.admin?
+  end
 end
