@@ -9,7 +9,7 @@ class ArticlePolicy < ApplicationPolicy
     end
 
     def show?
-        record.status == "public" || author?
+        record.status == "public" || author? || admin?
     end
 
     def update?
