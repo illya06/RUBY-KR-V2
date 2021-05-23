@@ -12,19 +12,30 @@
   </head>
 
   <body>
+    <div class="container">
     <header>
         <% if user_signed_in? %>
             <%= current_user.email %>
+            <% if current_user.admin? %>
+                (admin)
+            <% end %>
+            |
+            <%= link_to 'Articles', root_path %>
+            |
+            <%= link_to 'Unpublished articles', unpublished_articles_path %>
+            |
             <%= link_to 'Log out', destroy_user_session_path,
                          method: :delete, data: { confirm: 'Are you shure?' } %>
         <% else %>
             <%= link_to 'Log in', new_user_session_path %>
         <% end %>
     </header>
+
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 
 
     <%= yield %>
+    </div>
   </body>
 </html>
