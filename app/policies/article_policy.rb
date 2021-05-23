@@ -3,6 +3,10 @@ class ArticlePolicy < ApplicationPolicy
         true
     end
 
+    def unpublished
+        true
+    end
+
     def create?
         return false unless user
         true
