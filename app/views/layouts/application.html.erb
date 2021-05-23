@@ -13,7 +13,8 @@
 
   <body>
     <div class="container">
-    <header>
+    <header class="mt-5">
+    <h5>
         <% if user_signed_in? %>
             <%= current_user.email %>
             <% if current_user.admin? %>
@@ -29,6 +30,7 @@
         <% else %>
             <%= link_to 'Log in', new_user_session_path %>
         <% end %>
+    </h5>
     </header>
 
     <p class="notice"><%= notice %></p>
