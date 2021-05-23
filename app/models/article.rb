@@ -1,5 +1,7 @@
 class Article < ApplicationRecord
   include Visible
+  include ImageUploader::Attachment(:image)
+
   belongs_to :author, class_name: 'User'
   has_many :comments, dependent: :destroy
 
