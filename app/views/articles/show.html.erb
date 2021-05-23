@@ -1,31 +1,34 @@
-<h1><%= @article.title %></h1>
+<h1><p><%= @article.title %>
 
-<p>
-  <strong>Author: </strong>
-  <%= @article.author.email %>
-</p>
-
-<p><%= @article.body %></p>
-
-<%= link_to "Home", root_path %>
-
-<ul>
   <% if policy(@article).update? %>
-    <li><%= link_to "Edit", edit_article_path(@article) %></li>
+  |
+    <%= link_to "Edit", edit_article_path(@article) %>
   <% end %>
 
   <% if policy(@article).destroy? %>
-    <li><%= link_to "Destroy", article_path(@article),
+  |
+    <%= link_to "Destroy", article_path(@article),
                     method: :delete,
-                    data: { confirm: "Are you sure?" } %></li>
+                    data: { confirm: "Are you sure?" } %>
   <% end %>
+</p></h1>
 
-</ul>
+<p>
+    <strong>Author: </strong>
+    <%= @article.author.email %>
+</p>
 
-<h2>Comments</h2>
+<p>
+    <strong>Content: </strong>
+    <%= @article.body %>
+</p>
+<br>
+<h3>Comments</h3>
 <%= render @article.comments %>
-
+<br>
+<br>
+<br>
 <% if policy(@article).create? %>
-    <h2>Add a comment:</h2>
+    <h3>Add a comment:</h3>
     <%= render 'comments/form' %>
 <% end %>
