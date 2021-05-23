@@ -1,0 +1,14 @@
+Our blog has <%= Article.non_public_count %> unpublished articles!
+
+<%= form_with method: :get do |form| %>
+  <%= form.label :request, "Search for:" %>
+  <%= form.text_field :request, value: params[:request] %>
+  <%= form.submit "Search" %>
+<% end %>
+
+<%= render 'articles', articles: @articles %>
+<br>
+<div>
+    <%= link_to "Previous Page", articles_path(page: @page - 1) %>
+    <%= link_to "Next Page", articles_path(page: @page + 1) %>
+</div>
