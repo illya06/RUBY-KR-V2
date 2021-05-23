@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   root "articles#index"
 
   resources :articles do
+    get '/unpublished', to: 'articles#unpublished', on: :collection
     resources :comments
   end
+
+
 end
