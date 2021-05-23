@@ -1,0 +1,14 @@
+<ul>
+  <% @articles.each do |article| %>
+    <li>
+      <p>
+        <strong>Author: </strong>
+        <%= article.author.username %>
+        <br>
+        <%= link_to article.title, article %>
+        <br>
+        <%= link_to article.body, article %>
+      </p>
+    </li>
+  <% end %>
+</ul>
