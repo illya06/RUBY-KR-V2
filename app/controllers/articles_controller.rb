@@ -24,7 +24,7 @@ class ArticlesController < ApplicationController
     # @articles = Article.is_private.order(created_at: :desc).search(params[:request]).includes(:author).offset(@page*ARTICLES_AMMOUNT).limit(ARTICLES_AMMOUNT)
 
     if @page < 0 || @articles.blank?
-        redirect_to root_path
+        redirect_to unpublished_articles_path
     end
   end
 
