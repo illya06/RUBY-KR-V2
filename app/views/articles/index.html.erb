@@ -2,6 +2,13 @@
 
 Our blog has <%= Article.public_count %> articles and counting!
 
+<%= form_with method: :get do |form| %>
+  <%= form.label :request, "Search for:" %>
+  <%= form.text_field :request, value: params[:request] %>
+  <%= form.submit "Search" %>
+<% end %>
+
+
 <ul>
   <% @articles.each do |article| %>
     <li>
