@@ -3,8 +3,8 @@ class ArticlePolicy < ApplicationPolicy
         true
     end
 
-    def unpublished
-        true
+    def unpublished?
+        user_logged_in?
     end
 
     def create?
@@ -26,7 +26,6 @@ class ArticlePolicy < ApplicationPolicy
 
     private
     def author?
-        return false unless user
-        record.author_id == user.id
+        user_logged_in? && record.author_id == user.id
     end
 end
