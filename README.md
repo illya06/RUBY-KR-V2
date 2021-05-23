@@ -1,6 +1,6 @@
 # SUM
 
-5 + 2 + 2 + 3 + 2 + 1 + 2 = `17`
+5 + 3 + 3 + 2 + 2 + 2 + 2 + 1 = `20`
 
 # THINGS I'VE DONE
 
@@ -8,23 +8,16 @@ List of `features` :
 
     - Gettinng started (5)
 
+    - Docker Compose (3)
+
+    - Authorization (3)
+
     - Pagination (2)
 
     - Authentication (2)
 
-    - Authorization (3)
-
     - Search 'by title' (2)
-
-    - Admin (1)
 
     - Images (2)
 
-List of `features` TO DO :
-
-- фільтрування (на приклад постів за категоріями) - 2
-- фільтрування за тегами - 2
-- розгортання на heroku - 3
-- тести до вашого коду - 1-3
-- JSON API + окремий клієнт - 2 (тут же JWT автентифікація - ще +2)
-- Docker Compose - 3
+    - Admin (1)
