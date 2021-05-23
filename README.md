@@ -21,3 +21,21 @@ List of `features` :
     - Images (2)
 
     - Admin (1)
+
+# HOW TO RUN DOCKER-COMPOSE
+
+- docker-compose build
+
+Configure container:
+
+- docker-compose run web rails db:create
+
+- docker-compose run web rails db:migrate
+
+Add `user` and `article` to DB:
+
+- docker-compose run web rails c
+
+or you can do it through pgAdmin or VS Code plugins
+
+! IF DB IS EMPTY YOU`LL GET ENDLESS REDIRECTION
