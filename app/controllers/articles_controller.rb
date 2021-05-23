@@ -14,6 +14,20 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def unpublished
+    authorize Article
+
+    @page = params.fetch(:page, 0).to_i
+    @articles = current_user.admin? ? Article.all : current_user.articles
+    @articles = @articles.is_private.order(created_at: :desc).search(params[:request]).includes(:author)
+    @articles = @articles.offset(@page*ARTICLES_AMMOUNT).limit(ARTICLES_AMMOUNT)
+    # @articles = Article.is_private.order(created_at: :desc).search(params[:request]).includes(:author).offset(@page*ARTICLES_AMMOUNT).limit(ARTICLES_AMMOUNT)
+
+    if @page < 0 || @articles.blank?
+        redirect_to root_path
+    end
+  end
+
   def show
     @article = Article.find(params[:id])
     authorize @article
